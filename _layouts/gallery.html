@@ -1,0 +1,12 @@
+---
+layout: default
+---
+<ul class="clearing-thumbs gallery-container" data-clearing>
+{% for pic in page.pictures %}
+ <li class="gallery-item">
+  	<a href={{ pic.src }}>
+  	<img data-caption= {{ pic.caption }} src={{ pic.url }}>
+	</a>
+ </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,24 @@
+/*#############################################################
+Name: Twilight
+Date: 2006-11-21
+Description: A dark and mysterious single column template.
+Author: Viktor Persson
+URL: http://templates.arcsin.se
+
+Feel free to use and modify but please provide credits.
+#############################################################*/
+
+/* standard elements */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {color: #663;}
+
+a:hover {color: #993;}
+
+body {
+	margin: 0;
+}
+
