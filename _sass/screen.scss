@@ -1,0 +1,392 @@
+// Welcome to Compass.
+// In this file you should write your main styles. (or centralize your imports)
+
+$break-small: 520px;
+$break-medium: 750px;
+// A container (and its padding) will not grow larger than this width. */
+$container-max-width: 968px;
+$top-bar-height-small: 48px;
+$top-bar-height-medium: 64px;
+
+$nav-background-color: #555;
+$nav-background-color-hover: shade($nav-background-color, 10%);
+$nav-background-color-active: #5078c8;
+$nav-background-color-active-hover: shade($nav-background-color-active, 10%);
+$nav-text-color: #fff;
+$nav-items: 4;
+
+
+
+
+@import 'compass/css3';
+@import 'compass/reset';
+
+
+@mixin edges($left, $top, $right, $bottom) {
+  left: $left;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  background-color: #f0f0f0;
+  font-family: 'Lato', sans-serif;
+  font-weight: normal;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+// Main container class. */
+.holder {
+  width: 100%;
+  max-width: $container-max-width;
+
+  margin-left:  auto;
+  margin-right: auto;
+}
+
+.row {
+  &:before, &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+body {
+    padding: 8px;
+}
+
+.content {
+  margin-top: 8px
+}
+
+.gallery-container {
+  list-style-type: none;
+  margin-left: 0;
+  width: 100%;
+
+  li {
+    margin-right: 0;
+  }
+}
+
+.nav-collapse {
+  .logo {
+    text-decoration: none;
+    line-height: 0;
+    display: block;
+    width: $top-bar-height-small;
+    float: left;
+    margin-right: 8px;
+  }
+
+  ul {
+    clear: both;
+    transition: height .5s;
+    overflow: hidden;
+    height: 0px;
+  }
+  .uncollapsed {
+    height: auto;
+  }
+
+  li {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing:    border-box;
+      box-sizing:         border-box;
+
+    a {
+      padding: 0 1em 0 1em;
+      background-color: $nav-background-color;
+      font-size: 16px;
+      height: $top-bar-height-small;
+      line-height: $top-bar-height-small;
+      color: $nav-text-color;
+      text-decoration: none;
+      display: block;
+
+      &:hover {
+        background-color: $nav-background-color-hover;
+      }
+    }
+  }
+  
+  .active a {
+    background-color: $nav-background-color-active;
+    &:hover {
+      background-color: $nav-background-color-active-hover;
+    }
+  }
+  button {
+    width: $top-bar-height-small * 1.75;
+    height: $top-bar-height-small;
+    float: right;
+    background: none;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: $nav-background-color;
+    color: $nav-text-color;
+    border: none;
+    margin: 0px;
+    text-align: middle;
+    vertical-align: middle;
+    font-family: 'Lato', sans-serif;
+    -webkit-appearance: none;
+
+    &:hover {
+      background-color: $nav-background-color-hover;
+    }
+
+    &:focus {
+      outline:0;
+    }
+  }
+  @media (min-width: $break-small) {
+    button {
+      display: none;
+    }
+    ul {
+      clear: none;
+      height: auto;
+      float: right;
+    }
+    li {
+      width: auto;//($break-small - $top-bar-height-small - 15) / $nav-items;
+      float: left;
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+  @media (min-width: $break-medium) {
+    li {
+      a {
+        padding: 0 1.5em 0 1.5em;
+        font-size: 16px;
+        height: $top-bar-height-medium;
+        line-height: $top-bar-height-medium;
+      }
+    }
+    .logo {
+      width: $top-bar-height-medium;
+    }
+  }
+}
+
+.gallery-item {
+  float: left;
+  height: 0;
+  padding-bottom: 50%;
+  position: relative;
+  width: 50%;
+
+  @media (min-width: $break-small) {
+    padding-bottom: 33.3%;
+    width: 33.3%;
+  }
+
+  @media (min-width: $break-medium) {
+    padding-bottom: 25%;
+    width: 25%;
+  }
+
+  img {
+    width: 101%;
+  }
+
+  a {
+    text-decoration: none;
+    background-color: #fff;
+    overflow: hidden;
+    position: absolute;
+    @include box-shadow(rgba(0, 0, 0, 0) 0 0 0);
+    @include edges(0, 0, 0, 0);
+    @include transition(top 0.1s, bottom 0.1s, left 0.1s, right 0.1s, box-shadow 0.1s);
+  }
+
+  &:hover a {
+    z-index: 900;
+    @include box-shadow(rgba(0, 0, 0, 0.6) 0.05em 0.1em 0.8em);
+    @include edges(-2%, -2%, -2%, -2%);
+  }
+}
+
+.post-item {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 480px;
+  padding:  0px 0px 8px 0;
+  position: relative;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+
+  @media (min-width:640px) {
+    max-width: 484px;
+    width: 50%;
+    float: left;
+    margin: auto;
+    padding: 0 0px 8px 4px;
+
+    &:nth-child(2n - 1){
+      padding: 0 4px 8px 0;
+    }
+  }
+}
+
+.post-item-content {
+  background-color: white;
+}
+.post-item-text {
+  padding: 16px;
+
+  a {
+    float: left;
+    font-size: 36px;
+    text-decoration: none;
+    color: $nav-background-color-active;
+    @media (min-width: 640px) {
+      font-size: 28px;
+    }
+    @media (min-width: $break-medium) {
+      font-size: 36px;
+    }
+  }
+  .subheader {
+    line-height: 36px;
+    font-size: 18px;
+    float: right;
+    color: $nav-background-color;
+    @media (min-width: 640px) {
+      line-height: 28px;
+      font-size: 16px;
+    }
+    @media (min-width: $break-medium) {
+      line-height: 36px;
+      font-size: 18px;
+    }
+  }
+  .entry {
+    clear: both;
+  }
+    &:before, &:after {
+      display: table;
+      content: "";
+    }
+    &:after {
+      clear: both;
+    }
+}
+
+.game {
+  background-color: white;
+}
+
+.game-main {
+  padding: 0px 12px 0px 12px;
+}
+
+.game-sidebar {
+  padding: 6px 6px 6px 6px;
+}
+
+.footer {
+  color: #ccc;
+  font-size: 0.75em;
+  padding: 4px;
+  text-align: right;
+}
+
+.portrait {
+  padding: 0 0 8px 0;
+  float: right;
+  width: 100%;
+  max-width: 100%;
+  @media (min-width: $break-small) {
+    width: 50%;
+    padding: 0 0 0 16px;
+  }
+  @media (min-width: $break-medium) {
+    width: 40%;
+  }
+    -webkit-box-sizing: border-box;
+  -moz-box-sizing:    border-box;
+  box-sizing:         border-box;
+}
+
+.title-front {
+  float: left;
+}
+
+.text-front {
+  font-size: 16px;
+  line-height: 24px;
+  float: left;
+  width: 100%;
+  max-width: 100%;
+  @media (min-width: $break-small) {
+    width: 50%;
+  }
+  @media (min-width: $break-medium) {
+    width: 60%;
+  }
+}
+
+.button {
+  margin: 4px;
+  padding: 0 1em 0 1em;
+  background-color: $nav-background-color-active;
+  font-size: 16px;
+  height: $top-bar-height-small;
+  line-height: $top-bar-height-small;
+  color: $nav-text-color;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    background-color: $nav-background-color-active-hover;
+  }
+}
+
+h1 {
+  color: $nav-background-color-active;
+  font-size: 48px;
+  line-height: 60px;
+
+  @media (min-width: $break-small) {
+    font-size: 60px;
+    line-height: 72px;
+  }
+  @media (min-width: $break-medium) {
+    font-size: 72px;
+    line-height: 84px;
+  }
+}
+
+h4 {
+  color: $nav-background-color;
+  font-size: 18px;
+  line-height: 24px;
+
+  @media (min-width: $break-small) {
+    font-size: 21px;
+    line-height: 32px;
+  }
+  @media (min-width: $break-medium) {
+    font-size: 24px;
+    line-height: 36px;
+  }
+}
